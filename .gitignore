@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[c]
+*$py.class
+.pytest_cache/
+/.hg/
+/.cvscode/
+
+# Distribution / specific package method generation:
+dist/
+build/
+egg/
+.egg-info/
+venv/
+env/
+
+# Logs
+logs/
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
