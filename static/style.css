@@ -1,0 +1,378 @@
+/* Password Strength Checker - Stylesheet
+   Professional, cybersecurity-focused, responsive design.
+   No external dependencies (vanilla CSS only).
+*/
+
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #34495e;
+  --accent-weak: #e74c3c;
+  --accent-strong: #27ae60;
+  --accent-moderate: #f39c12;
+  --accent-very-strong: #8e44ad;
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-color: #2c3e50;
+  --text-light: #7f8c8d;
+  --border-color: #dcdde1;
+  --success-bg: #d5ffdd;
+  --warning-bg: #fff4d4;
+  --danger-bg: #faecee;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Focus styles for accessibility */
+a:focus,
+button:focus,
+input:focus,
+select:focus {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Remove default button/inputs styling reset */
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Layout */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 30px 0;
+  border-bottom: 4px solid var(--primary-color);
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+
+.header p {
+  margin: 10px 0 0 0;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+/* Form Section */
+.form-section {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.form-section h2 {
+  margin: 0 0 20px 0;
+  font-size: 1.3rem;
+  color: var(--secondary-color);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Password input group */
+.password-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.password-input {
+  width: 100%;
+  padding: 12px 16px 12px 48px;
+  font-size: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  background: #fff;
+  transition: border-color 0.3s;
+}
+
+.password-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.password-input::placeholder {
+  color: var(--text-light);
+}
+
+.show-hide-btn {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  padding: 4px;
+}
+
+.show-hide-btn:hover {
+  color: var(--primary-color);
+}
+
+/* Strength indicator */
+.strength-indicator {
+  margin: 20px 0;
+  min-height: 40px;
+}
+
+.strength-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--border-color);
+  position: relative;
+  transition: background 0.3s;
+}
+
+.strength-label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.strength-bar.very-weak { background: var(--accent-weak); }
+.strength-bar.weak { background: var(--accent-weak); }
+.strength-bar.moderate { background: var(--accent-moderate); }
+.strength-bar.strong { background: var(--accent-strong); }
+.strength-bar.very-strong { background: var(--accent-very-strong); }
+
+/* Analysis sections */
+.analysis-section {
+  margin: 25px 0;
+  padding: 20px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.analysis-section:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.analysis-section h3 {
+  margin: 0 0 15px 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-light);
+}
+
+/• Character composition */
+.char-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.char-label {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  min-width: 80px;
+}
+
+.char-value {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.char-yes {
+  color: var(--accent-strong);
+  font-weight: bold;
+}
+
+.char-no {
+  color: var(--text-light);
+  font-weight: normal;
+}
+
+.char-yes::before {
+  content: "✓";
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+}
+
+.char-no::before {
+  content: "✗";
+  color: var(--accent-weak);
+  font-size: 0.8rem;
+}
+
+/* Patterns analysis */
+.patterns-list {
+  margin: 10px 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.patterns-list li {
+  padding: 6px 0;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.patterns-list li span {
+  color: var(--accent-weak);
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* Entropy and search space */
+.entropy-section {
+  margin: 25px 0;
+}
+
+.entropy-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 0.9rem;
+}
+
+.entropy-label {
+  color: var(--text-light);
+}
+
+.entropy-value {
+  font-family: "Consolas", "Monaco", monospace;
+  color: var(--primary-color);
+}
+
+.search-space-value {
+  font-family: "Consolas", "Monaco", monospace;
+  color: var(--primary-color);
+  font-size: 0.8rem;
+}
+
+/* Recommendations */
+.recommendations-list {
+  margin: 20px 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.recommendations-list li {
+  padding: 8px 0;
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.recommendations-list li.important {
+  color: var(--accent-weak);
+  font-weight: bold;
+}
+
+/* Privacy notice */
+.privacy-notice {
+  margin: 30px 0 0 0;
+  padding: 20px;
+  background: var(--warning-bg);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Button */
+.btn-analyze {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 15px;
+}
+
+.btn-analyze:hover {
+  background: #1a252f;
+}
+
+.btn-analyze:focus {
+  outline: 3px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+
+/* Results */
+.result-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 4px solid var(--primary-color);
+}
+
+.result-section.hidden {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .form-section {
+    padding: 20px;
+  }
+
+  .char-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .char-label {
+    min-width: 100%;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .strength-bar,
+  .show-hide-btn {
+    transition: none;
+  }
+}

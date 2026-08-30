@@ -1,0 +1,215 @@
+<!-- Password Strength Checker - Web Application Template
+     Cybersecurity-focused, responsive, accessible interface.
+     Privacy-first: password never stored or logged.
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Strength Checker</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>Password Strength Checker</h1>
+      <p>Evaluates password security with length analysis, character diversity,
+      pattern detection, entropy estimation, and security recommendations.</p>
+    </header>
+
+    <!-- Main Form Section -->
+    <section class="form-section" id="formSection">
+      <h2>Password Analysis</h2>
+
+      <!-- Password Input Group -->
+      <form method="POST" action="">
+        <div class="password-group">
+          <input
+            type="password"
+            id="password"
+            class="password-input"
+            placeholder="Enter a password to evaluate its strength"
+            autocomplete="off"
+            required
+          >
+          <button type="button" class="show-hide-btn" aria-label="Show password"
+                  aria-pressed="true">
+            Show
+          </button>
+        </div>
+      </form>
+
+      <!-- Strength Indicator -->
+      <div class="strength-indicator">
+        <div class="strength-bar very-weak">
+          <span class="strength-label">Very Weak</span>
+        </div>
+      </div>
+
+      <!-- Score display -->
+      <div style="margin-top: 10px; text-align: center;">
+        <span class="score">0</span>/100
+      </div>
+
+      <!-- Analysis Sections -->
+      
+      <!-- Character Composition -->
+      <section class="analysis-section" id="charSection">
+        <h3>Character Composition</h3>
+        <div class="char-row">
+          <span class="char-label">Lowercase</span>
+          <span class="char-value">
+            <span class="char-no" style="display:none;">✗</span>
+            <span class="char-yes" style="display:none;">✓</span>
+          </span>
+        </div>
+        <div class="char-row">
+          <span class="char-label">Uppercase</span>
+          <span class="char-value">
+            <span class="char-no" style="display:none;">✗</span>
+            <span class="char-yes" style="display:none;">✓</span>
+          </span>
+        </div>
+        <div class="char-row">
+          <span class="char-label">Numbers</span>
+          <span class="char-value">
+            <span class="char-no" style="display:none;">✗</span>
+            <span class="char-yes" style="display:none;">✓</span>
+          </span>
+        </div>
+        <div class="char-row">
+          <span class="char-label">Special chars</span>
+          <span class="char-value">
+            <span class="char-no" style="display:none;">✗</span>
+            <span class="char-yes" style="display:none;">✓</span>
+          </span>
+        </div>
+      </section>
+
+      <!-- Patterns Analysis -->
+      <section class="analysis-section" id="patternsSection">
+        <h3>Pattern Analysis</h3>
+        <ul class="patterns-list">
+          <!-- Populated by JavaScript -->
+        </ul>
+      </section>
+
+      <!-- Entropy and Search Space -->
+      <section class="entropy-section">
+        <div class="entropy-row">
+          <span class="entropy-label">Theoretical Entropy</span>
+          <span class="entropy-value">0.0</span> bits
+        </div>
+        <div class="entropy-row">
+          <span class="entropy-label">Search Space</span>
+          <span class="search-space-value">0</span> possibilities
+        </div>
+      </section>
+
+      <!-- Security Recommendations -->
+      <section class="analysis-section">
+        <h3>Security Recommendations</h3>
+        <ul class="recommendations-list">
+          <!-- Populated by JavaScript -->
+        </ul>
+      </section>
+
+      <!-- Analyze Button -->
+      <button type="submit" class="btn-analyze">Analyze Password</button>
+    </section>
+
+    <!-- Result Section (initially hidden) -->
+    <section class="result-section" id="resultSection" hidden>
+      <div class="form-section">
+        <h2>Strength Results</h2>
+
+        <!-- Strength Indicator -->
+        <div class="strength-indicator">
+          <div class="strength-bar very-weak">
+            <span class="strength-label">Very Weak</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 10px; text-align: center;">
+          <span class="result-score">0</span>/100
+        </div>
+
+        <!-- Character Composition -->
+        <section class="analysis-section" id="resultCharSection">
+          <h3>Character Composition</h3>
+          <div class="char-row">
+            <span class="char-label">Lowercase</span>
+            <span class="char-value">
+              <span class="char-no" style="display:none;">✗</span>
+              <span class="char-yes" style="display:none;">✓</span>
+            </span>
+          </div>
+          <div class="char-row">
+            <span class="char-label">Uppercase</span>
+            <span class="char-value">
+              <span class="char-no" style="display:none;">✗</span>
+              <span class="char-yes" style="display:none;">✓</span>
+            </span>
+          </div>
+          <div class="char-row">
+            <span class="char-label">Numbers</span>
+            <span class="char-value">
+              <span class="char-no" style="display:none;">✗</span>
+              <span class="char-yes" style="display:none;">✓</span>
+            </span>
+          </div>
+          <div class="char-row">
+            <span class="char-label">Special chars</span>
+            <span class="char-value">
+              <span class="char-no" style="display:none;">✗</span>
+              <span class="char-yes" style="display:none;">✓</span>
+            </span>
+          </div>
+        </section>
+
+        <!-- Patterns -->
+        <section class="analysis-section" id="resultPatternsSection">
+          <h3>Pattern Analysis</h3>
+          <ul class="patterns-list">
+            <!-- Populated by JavaScript -->
+          </ul>
+        </section>
+
+        <!-- Entropy and Search Space -->
+        <section class="entropy-section">
+          <div class="entropy-row">
+            <span class="entropy-label">Theoretical Entropy</span>
+            <span class="entropy-value">0.0</span> bits
+          </div>
+          <div class="entropy-row">
+            <span class="entropy-label">Search Space</span>
+            <span class="search-space-value">0</span> possibilities
+          </div>
+        </section>
+
+        <!-- Recommendations -->
+        <section class="analysis-section">
+          <h3>Security Recommendations</h3>
+          <ul class="recommendations-list">
+            <!-- Populated by JavaScript -->
+          </ul>
+        </section>
+
+        <!-- Privacy Notice -->
+        <div class="privacy-notice">
+          <strong>Privacy:</strong> Your password is processed locally for analysis
+          only. It is <strong>not stored</strong>, <strong>not logged</strong>, and
+          <strong>not sent to third-party services</strong>. The password does not
+          appear in results or application logs.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
